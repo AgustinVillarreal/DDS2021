@@ -6,48 +6,109 @@ me quedan ciertas dudas sobre la implementacion de un Builder en cuanto
 a ventajas y desventajas con respecto a utilizar un constructor*/
 
 /* Mi duda principal es en que parte es mas conveniente hacer las validaciones 
-en el PrendaBuilder */
+en el PrendaBuilder y sobre el colorSecundario */
+
+class Atuendo {
+    List<Prenda> prendas;
+
+    void Atuendo(prendas) {
+        this.prendas = prendas;
+    }
+}
 
 class PrendaBuilder {
 
-    Categoria categoria;
-    Material material;
-    Color colorPrimario;
-    TipoPrenda tipo;
+    Prenda prenda;
 
-    void agregarCategoria(Categoria unaCategoria) {
-        this.categoria = checkNotNull(categoria, 'La categoria no puede ser nula')
-    }
-    void agregarmaterial(Material material) {
-        this.material = checkNotNull(material, 'El material no puede ser nulo')
-    }
-    void agregarcolorPrimario(Color colorPrimario) {
-        this.colorPrimario = checkNotNull(colorPrimario, 'El color primario no puede ser nulo')
-    }
-    void agregartipo(TipoPrenda tipo) {
-        this.tipo = checkNotNull(tipo, 'El tipo no puede ser nulo')
+    void PrendaBuilder(){
+        prenda = new Prenda();
     }
 
-    Prenda build() {
-        if(!tipo.esDeCategoria(this.categoria))
-            throw new Exception(message= 'El tipo de prenda no coincide con la categoria')
-        return new Prenda(this.tipo, this.categoria, this.material, this.colorPrimario)
+    void agregarCategoria(Categoria categoria) {
+        prenda.setCategoria(checkNotNull(categoria, 'La categoria no puede ser nula'));
     }
+    void agregarMaterial(Material material) {
+        prenda.setMaterial(checkNotNull(material, 'El material no puede ser nulo'));
+    }
+    void agregarColorPrimario(Color colorPrimario) {
+        prenda.setColorPrimario(checkNotNull(colorPrimario, 'El color primario no puede ser nulo'))
+    }
+    void agregarTipo(TipoPrenda tipo) {
+        prenda.setTipo(checkNotNull(tipo, 'El tipo no puede ser nulo'))
+    }
+
+
+    Prenda getPrenda() {
+        return prenda;
+    }
+
+}
+
+class PrendaDirector {
+    
+    PrendaBuilder builder;
+
+    void PrendaDirector(){
+        builder = new PrendaBuilder();
+    }
+
+ 
+    void ConstruirPrenda(categoria, material, color, tipo)
+    {
+        
+        if(!tipo.esDeCategoria(categoria))
+            throw new Exception(message= 'El tipo de prenda no coincide con la categoria');
+
+        builder.agregarCategoria(categoria);
+        builder.agregarMaterial(material);
+        builder.agregarColorPrimario(color);
+        builder.agregarTipo(tipo);
+
+    }
+ 
+    public Vehiculo GetVehiculo()
+    {
+        return builder.GetVehiculo();
+    }
+
+	// void Prenda(CategoriaPrenda categoria, Material material, Color color, TipoPrenda tipo){
+	// 	this.categoria = categoria;
+	// 	this.material = material;
+	// 	this.color = color;
+	// 	this.tipo = tipo;
+	// }
+
+
+
 
 }
 
 class Prenda {
     
-    TipoPrenda tipo;
     Categoria categoria;
     Material material;
     Color colorPrimario;
+    TipoPrenda tipo;
     Color colorSecundario;
 
-    void agregarColorSecundario(Color unColorSecundario) {
-        this.colorSecundario = unColorSecundario;
+    void setCategoria(categoria) {
+        this.categoria = categoria
     }
+    void setMaterial(material) {
+        this.material = material
+    }
+    void setColorPrimario(color) {
+        this.colorPrimario = color
+    }
+    void setTipo(tipo) {
+        this.tipo = tipo
+    }
+    
 
+    // Me gustaria saber si existe alguna otra forma mas eficiente (o usando el BUILDER) de implentar el agregado OPCIONAL de un color secundario
+    void agregarColorSecundario(Color colorSecundario) {
+        this.colorSecundario = checkNotNull(colorSecundario, 'El tipo no puede ser nulo');
+    }
 
 }
 
@@ -80,3 +141,8 @@ Enum Color {
     NEGRO,
     BLANCO,
 }
+
+
+// PrendaDirector prenda = new PrendaDirector()
+// prenda.construirPrenda(...)
+// prenda.agregarColorSecundario()
