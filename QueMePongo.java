@@ -29,7 +29,8 @@ class PrendaBuilder {
     }
 
     void build() {
-        tipo.esDeCategoria(this.categoria)
+        if(!tipo.esDeCategoria(this.categoria))
+            throw new Exception(message= 'El tipo de prenda no coincide con la categoria')
         return = new Prenda(this.tipo, this.categoria, this.material, this.colorPrimario)
     }
 
