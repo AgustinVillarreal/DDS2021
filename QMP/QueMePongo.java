@@ -65,20 +65,6 @@ class PrendaDirector {
         builder.agregarTipo(tipo);
 
     }
- 
-    public Vehiculo GetVehiculo()
-    {
-        return builder.GetVehiculo();
-    }
-
-	// void Prenda(CategoriaPrenda categoria, Material material, Color color, TipoPrenda tipo){
-	// 	this.categoria = categoria;
-	// 	this.material = material;
-	// 	this.color = color;
-	// 	this.tipo = tipo;
-	// }
-
-
 
 
 }
