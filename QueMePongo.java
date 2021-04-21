@@ -28,10 +28,10 @@ class PrendaBuilder {
         this.tipo = checkNotNull(tipo, 'El tipo no puede ser nulo')
     }
 
-    void build() {
+    Prenda build() {
         if(!tipo.esDeCategoria(this.categoria))
             throw new Exception(message= 'El tipo de prenda no coincide con la categoria')
-        return = new Prenda(this.tipo, this.categoria, this.material, this.colorPrimario)
+        return new Prenda(this.tipo, this.categoria, this.material, this.colorPrimario)
     }
 
 }
