@@ -1,0 +1,21 @@
+@startuml
+
+AsesorImagen --> AsesorClima
+AsesorClima ..> Api
+AccuWeatherAPI ..|> Api
+class AsesorImagen{
+
+    List<Atuendo> sugerirAtuendo()
+}
+
+class AsesorClima{
+    
+    List<Map<String, Object>> obtenerCondicionesClimaticas(String ciudad)
+}
+
+Interface Api {
+    List<Map<String, Object>> getWeather(String ciudad);
+}
+
+
+@enduml

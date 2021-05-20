@@ -1,0 +1,82 @@
+@startuml
+Atuendo -right->"*" Prenda
+Prenda --> Categoria
+TipoPrenda -right-> Categoria
+Prenda --> TipoMaterial
+Prenda --> Color
+Prenda --> TipoPrenda
+PrendaBuilder --> Prenda
+Prenda --> TipoDePrenda
+Prenda --> Trama
+
+class Prenda {
+    TipoDePrenda tipoDePrenda
+    Categoria categoria
+    Color colorPrimario
+    Material material
+    Color colorSecundario
+    Trama trama
+    int temperaturaMaxima
+}
+class PrendaBuilder {
+    TipoDePrenda tipoDePrenda
+    Categoria categoria
+    Color colorPrimario
+    Material material
+    Color colorSecundario
+    Trama trama
+    int temperaturaMaxima
+
+    void agregarCategoria(Categoria unaCategoria)
+    void especificarColorSecundario(Color unColor)
+    void especificarTipoMaterial(Material unMaterial)
+    void especificarColorPrimario(Color unColor)
+    void especificarTrama(Trama trama)
+    void especificarTemperaturaMaxima(int temp)
+    Prenda crearPrenda()
+}
+
+Enum Categoria {
+    PARTESUPERIOR,
+    CALZADO, 
+    PARTEINFERIOR, 
+    ACCESORIOS,
+}
+
+Enum TipoMaterial {
+    ALGODON, 
+    HILO,
+}
+
+class Color {
+   int rojo
+   int verde
+   int azul
+}
+
+Enum Trama {
+  LISA,
+  RAYADA,
+}
+
+Uniforme -->"*" Prenda
+Uniforme ..> Sastre
+SastreSanJuan .up.|> Sastre
+SastreJhonston .up.|> Sastre
+
+class Uniforme {
+
+    Uniforme fabricar(Sastre sastre)
+
+}
+
+interface Sastre {
+
+    Prenda fabricarParteSup()
+    Prenda fabricarParteInf()
+    Prenda fabricarParteCalzado()
+}
+
+class SastreJhonston{}
+class SastreSanJuan
+@enduml
