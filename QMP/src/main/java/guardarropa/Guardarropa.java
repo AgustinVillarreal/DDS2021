@@ -34,7 +34,7 @@ public class Guardarropa {
     return prendasParaEliminar;
   }
 
-  public void aceptarPropuesta(PrendaSugerida unaPrenda) {
+  public void confirmarPropuesta(PrendaSugerida unaPrenda) {
     unaPrenda.setAceptada(true);
   }
 

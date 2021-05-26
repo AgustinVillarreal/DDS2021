@@ -1,0 +1,35 @@
+@startuml
+
+Guardarropa --right> PrendaSugerida
+PrendaSugerida --> Prenda
+Guardarropa -->"*" Prenda
+Guardarropa -->"*" User
+
+class PrendaSugerida {
+    Boolean aceptaSugerencia;    
+}
+
+class Prenda {
+  TipoDePrenda tipoDePrenda;
+  TipoMaterial material;
+  Color colorPrimario;
+  Color colorSecundario;
+  Trama trama;
+  Integer temperaturaMaxima;
+}
+
+class Guardarropa {
+
+  List<User> duenios;
+  List<PrendaSugerida> prendasParaAgregar;
+  List<PrendaSugerida> prendasParaEliminar;
+  
+  confirmarPropuesta()
+  deshacerModificaciones()
+  incorporarModificaciones()
+  prendasAgregadas()
+  prendasEliminadas()
+}
+
+
+@enduml
